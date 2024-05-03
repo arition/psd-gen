@@ -1,0 +1,38 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Publish
+
+on:
+  push:
+    tags: "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+      - name: Build Linux x64
+        run: bun build:sfe --target=bun-linux-x64 --outfile psd-gen-bun-linux-x64
+      - name: Build Linux arm64
+        run: bun build:sfe --target=bun-linux-arm64 --outfile psd-gen-bun-linux-arm64
+      - name: Build Windows x64
+        run: bun build:sfe --target=bun-windows-x64 --outfile psd-gen-bun-windows-x64.exe
+      - name: Build Mac x64
+        run: bun build:sfe --target=bun-darwin-x64 --outfile psd-gen-bun-darwin-x64
+      - name: Build Mac arm64
+        run: bun build:sfe --target=bun-darwin-arm64 --outfile psd-gen-bun-darwin-arm64
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            psd-gen-bun-linux-x64
+            psd-gen-bun-linux-arm64
+            psd-gen-bun-windows-x64.exe
+            psd-gen-bun-darwin-x64
+            psd-gen-bun-darwin-arm64
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
