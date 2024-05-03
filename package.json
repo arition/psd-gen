@@ -1,8 +1,13 @@
 {
   "name": "psd-gen",
-  "module": "src/index.ts",
   "type": "module",
+  "module": "src/index.ts",
   "version": "1.0.0",
+  "bin": {
+    "psd-gen": "dist/index.js"
+  },
+  "homepage": "https://github.com/arition/psd-gen",
+  "license": "MIT",
   "devDependencies": {
     "@types/bun": "latest",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
