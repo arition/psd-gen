@@ -15,6 +15,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
+      - name: Install packages
+        run: bun install
       - name: Build Linux x64
         run: bun build:sfe --target=bun-linux-x64 --outfile psd-gen-bun-linux-x64
       - name: Build Linux arm64
