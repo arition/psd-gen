@@ -1,5 +1,7 @@
 # psd-gen
 
+[![NPM Version](https://img.shields.io/npm/v/psd-gen)](https://www.npmjs.com/package/psd-gen)
+
 A simple tool to make photoshop psd files programmatically via JSON. Based on [ag-psd](https://github.com/Agamnentzar/ag-psd).
 
 ## Usage
