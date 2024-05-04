@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { readFile, writeFile } from "node:fs/promises";
 
 import { type Psd, writePsd } from "ag-psd";
